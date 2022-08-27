@@ -5,7 +5,7 @@ import (
 	"github.com/dpensi/coding-exercises/stack"
 )
 
-func Dfs[T any](start node[T], operation func(n node[T])) []node[T] {
+func Dfs[T any](start node[T], operation func(n any)) []node[T] {
 	orderedVisitedNodes := make([]node[T], 0)
 	visitedNodes := hashset.New[node[T]]()
 	nodesStack := stack.New[node[T]]()
@@ -30,7 +30,7 @@ func Dfs[T any](start node[T], operation func(n node[T])) []node[T] {
 	return orderedVisitedNodes
 }
 
-func DfsRecursive[T any](start node[T], operation func(n node[T])) []node[T] {
+func DfsRecursive[T any](start node[T], operation func(n any)) []node[T] {
 	orderedVisitedNodes := make([]node[T], 0)
 	visitedNodes := hashset.New[node[T]]()
 	dfsRec(start, operation, &orderedVisitedNodes, visitedNodes)
@@ -40,7 +40,7 @@ func DfsRecursive[T any](start node[T], operation func(n node[T])) []node[T] {
 
 func dfsRec[T any](
 	start node[T],
-	operation func(n node[T]),
+	operation func(n any),
 	orderedVisitedNodes *[]node[T],
 	visitedNodes hashset.HashSet[node[T]],
 ) {

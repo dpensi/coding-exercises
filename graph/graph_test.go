@@ -7,8 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func printNodeValue[T comparable](n node[T]) {
-	fmt.Println(n.Value)
+func printNodeValue[T comparable](n any) {
+	if print, ok := n.(node[T]); ok {
+		fmt.Println(print)
+		return
+	}
+	panic("node conversion error")
 }
 
 func TestBuild(t *testing.T) {

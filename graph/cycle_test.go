@@ -18,4 +18,8 @@ func TestCycle(t *testing.T) {
 	startNode := GetStatusGraph1()
 	result := Cycle(&startNode)
 	assert.Equal(t, len(result), 3)
+
+	nodeJ := GetStatusNodeJ()
+	result = Cycle(&nodeJ)
+	assert.Equal(t, len(result), 3)
 }

@@ -76,7 +76,7 @@ func dfsCycle[T comparable](son, parent *statusNode[T], fathers FathersSet[T]) *
 					-fathers.GetParent(son).Status())
 				return cycle
 			}
-		} else if adjParent != nil && adjParent.Status() < 0 && adj.Status() != parent.Status() {
+		} else if adjParent != nil && adj.Status() < 0 {
 			fathers.GetParent(adj).SetStatus(0)
 			fathers.GetParent(son).SetStatus(1)
 			son.SetStatus(1)
