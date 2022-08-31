@@ -3,28 +3,31 @@ package math
 import "math"
 
 func SieveEratosthene(limit int) []int {
-	sqrtLimit := int(math.Sqrt(float64(limit)))
+	sqrtLimit := getLimit(limit)
 	result := []int{}
 	sieve := getSieve(limit)
-	for i := 2; i < sqrtLimit; i++ {
+	for i := 2; i <= sqrtLimit; i++ {
 		if sieve[i] > 0 {
-			k := 1
-			for j := i*i; j < limit; j = (i*i) + (k*1) {
-				sieve[j] = -sieve[j]
-				k ++
+			for j := i * i; j <= limit; j += i {
+				if sieve[j] > 0 {
+					sieve[j] = -sieve[j]
+				}
 			}
 		}
 	}
-	for _, v := range sieve {
-		if v > 0 {result = append(result, v); }
+	for i := 2; i < len(sieve); i++ {
+		if sieve[i] > 0 {
+			result = append(result, sieve[i])
+		}
 	}
-	
+
 	return result
 }
 
 func IsPrime(n int) bool {
-	for i := 2; i < int(math.Sqrt(float64(n))); i++ {
-		if n % i == 0 {
+	limit := getLimit(n)
+	for i := 2; i < limit; i++ {
+		if n%i == 0 {
 			return false
 		}
 	}
@@ -33,8 +36,13 @@ func IsPrime(n int) bool {
 
 func getSieve(limit int) []int {
 	sieve := make([]int, 0, limit)
-	for i := 2 ; i < limit; i++ {
+	for i := 0; i <= limit; i++ {
 		sieve = append(sieve, i)
 	}
-	return sieve	
+	return sieve
+}
+
+func getLimit(n int) int {
+	return int(math.Ceil(math.Sqrt(float64(n))))
+
 }

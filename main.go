@@ -6,6 +6,5 @@ import (
 )
 
 func main() {
-	result := exercises.PrimesSum(2000000)
-	fmt.Println(result)
-}
+	fmt.Println(exercises.LongestCollatzSequence(1000000))
+} 

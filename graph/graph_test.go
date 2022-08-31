@@ -1,15 +1,14 @@
 package graph
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func printNodeValue[T comparable](n any) {
-	if print, ok := n.(node[T]); ok {
-		fmt.Println(print)
+	if _, ok := n.(node[T]); ok {
+		//fmt.Println(print)
 		return
 	}
 	panic("node conversion error")
